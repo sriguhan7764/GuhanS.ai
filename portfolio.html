@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guhan | AI & Robotics Engineer</title>
-    <meta name="description" content="Portfolio of Guhan - AI Engineer & Robotics Researcher specializing in Computer Vision, SLAM, and Autonomous Systems">
+    <title>Guhan S | AI & Robotics Engineer</title>
+    <meta name="description" content="Portfolio of Guhan S - AI Engineer & Robotics Researcher specializing in Computer Vision, SLAM, and Autonomous Systems">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -63,6 +63,36 @@
             background: #0a0a0f;
             color: #e2e8f0;
             overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #34D399;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease, border-color 0.3s ease;
+            mix-blend-mode: difference;
+        }
+
+        .custom-cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #34D399, #06B6D4);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            box-shadow: 0 0 20px rgba(52, 211, 153, 0.6);
+        }
+
+        body.cursor-hover .custom-cursor {
+            transform: scale(1.5);
+            border-color: #06B6D4;
         }
 
         /* Custom Scrollbar */
@@ -373,6 +403,67 @@
                 return () => window.removeEventListener('scroll', handleScroll);
             }, []);
 
+            // Custom Cursor Effect
+            useEffect(() => {
+                const cursor = document.createElement('div');
+                const cursorDot = document.createElement('div');
+                cursor.className = 'custom-cursor';
+                cursorDot.className = 'custom-cursor-dot';
+                document.body.appendChild(cursor);
+                document.body.appendChild(cursorDot);
+
+                let mouseX = 0, mouseY = 0;
+                let cursorX = 0, cursorY = 0;
+                let dotX = 0, dotY = 0;
+
+                const moveCursor = (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                };
+
+                const animate = () => {
+                    // Smooth cursor follow
+                    cursorX += (mouseX - cursorX) * 0.15;
+                    cursorY += (mouseY - cursorY) * 0.15;
+                    dotX += (mouseX - dotX) * 0.25;
+                    dotY += (mouseY - dotY) * 0.25;
+
+                    cursor.style.left = `${cursorX - 10}px`;
+                    cursor.style.top = `${cursorY - 10}px`;
+                    cursorDot.style.left = `${dotX - 4}px`;
+                    cursorDot.style.top = `${dotY - 4}px`;
+
+                    requestAnimationFrame(animate);
+                };
+
+                const handleMouseOver = (e) => {
+                    const target = e.target;
+                    if (target.tagName === 'A' || target.tagName === 'BUTTON' ||
+                        target.closest('a') || target.closest('button') ||
+                        target.classList.contains('glass-card') ||
+                        target.classList.contains('glass-strong')) {
+                        document.body.classList.add('cursor-hover');
+                    }
+                };
+
+                const handleMouseOut = () => {
+                    document.body.classList.remove('cursor-hover');
+                };
+
+                document.addEventListener('mousemove', moveCursor);
+                document.addEventListener('mouseover', handleMouseOver);
+                document.addEventListener('mouseout', handleMouseOut);
+                animate();
+
+                return () => {
+                    document.removeEventListener('mousemove', moveCursor);
+                    document.removeEventListener('mouseover', handleMouseOver);
+                    document.removeEventListener('mouseout', handleMouseOut);
+                    document.body.removeChild(cursor);
+                    document.body.removeChild(cursorDot);
+                };
+            }, []);
+
             // Enhanced Neural Network Animation with Dynamic Colors
             useEffect(() => {
                 const canvas = canvasRef.current;
@@ -496,8 +587,9 @@
             const handleDownloadResume = useCallback(() => {
                 try {
                     const link = document.createElement('a');
-                    link.href = 'Resume.pdf';
-                    link.download = 'Guhan_Resume.pdf';
+                    link.href = '/Resume.pdf';
+                    link.download = 'Guhan_S_Resume.pdf';
+                    link.target = '_blank';
                     link.click();
                 } catch (error) {
                     console.error('Error downloading resume:', error);
@@ -514,6 +606,7 @@
                     { name: 'Projects', icon: Code, gradient: 'from-teal-500 to-cyan-500' },
                     { name: 'Skills', icon: Cpu, gradient: 'from-emerald-500 to-teal-500' },
                     { name: 'Publications', icon: BookOpen, gradient: 'from-emerald-500 to-teal-500' },
+                    { name: 'Achievements', icon: Award, gradient: 'from-emerald-400 to-cyan-500' },
                     { name: 'Contact', icon: Mail, gradient: 'from-emerald-400 to-cyan-500' }
                 ], []);
 
@@ -608,7 +701,7 @@
                             <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
                                 Hi, I'm{' '}
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 gradient-text inline-block">
-                                    Guhan
+                                    Guhan S
                                 </span>
                             </h1>
 
@@ -695,7 +788,7 @@
                                     <Linkedin className="w-6 h-6 text-slate-300 group-hover:text-cyan-400 transition-colors" />
                                 </a>
                                 <a
-                                    href="mailto:guhan_s@zohomail.in"
+                                    href="mailto:guhan_s@zohomail.com"
                                     className="group p-5 glass-strong rounded-2xl hover:scale-125 transition-all shadow-xl border border-slate-700 hover:border-teal-500/50"
                                 >
                                     <Mail className="w-6 h-6 text-slate-300 group-hover:text-teal-400 transition-colors" />
@@ -715,6 +808,7 @@
                     'projects': <div className="min-h-screen pt-24 px-6 page-transition"><ProjectsPage /></div>,
                     'skills': <div className="min-h-screen pt-24 px-6 page-transition"><SkillsPage /></div>,
                     'publications': <div className="min-h-screen pt-24 px-6 page-transition"><PublicationsPage navigateTo={navigateTo} /></div>,
+                    'achievements': <div className="min-h-screen pt-24 px-6 page-transition"><AchievementsPage /></div>,
                     'contact': <div className="min-h-screen pt-24 px-6 page-transition"><ContactPage /></div>,
                 };
 
@@ -750,8 +844,8 @@
                     glow: 'glow-emerald'
                 },
                 {
-                    label: '95%',
-                    description: 'Detection Accuracy',
+                    label: '86th percentile',
+                    description: 'GATE DA 2025',
                     icon: Target,
                     gradient: 'from-emerald-400 via-teal-500 to-cyan-500',
                     glow: 'glow-teal'
@@ -873,14 +967,12 @@
                             {education.map((edu, idx) => (
                                 <div
                                     key={idx}
-                                    className="relative pl-10 pb-8 border-l-4 border-transparent slide-in-left"
+                                    className="relative pb-8 slide-in-left"
                                     style={{
-                                        animationDelay: `${idx * 0.2}s`,
-                                        borderImage: `linear-gradient(to bottom, ${idx === 0 ? '#34D399, #06B6D4' : '#14B8A6, #0891B2'}) 1`
+                                        animationDelay: `${idx * 0.2}s`
                                     }}
                                 >
-                                    <div className={`absolute -left-3 top-0 w-6 h-6 rounded-full bg-gradient-to-r ${edu.gradient} shadow-lg animate-pulse`}></div>
-                                    <div className="glass-strong rounded-2xl p-8 ml-6 hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 border-2 border-slate-700 hover:border-emerald-500/50 group">
+                                    <div className="glass-strong rounded-2xl p-8 hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 border-2 border-slate-700 hover:border-emerald-500/50 group">
                                         <div className="flex flex-wrap justify-between items-start mb-4">
                                             <h3 className="text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-cyan-500 transition-all">
                                                 {edu.degree}
@@ -1526,7 +1618,7 @@
                     doi: 'Available on IEEE DataPort',
                     abstract: 'A comprehensive dataset for cotton crop health monitoring using UAV-based imaging. Includes multi-spectral imagery, annotated crop health indicators, and ground truth data collected across multiple growing seasons. Enables research in precision agriculture and computer vision applications.',
                     keywords: ['Agriculture', 'Computer Vision', 'UAV', 'Dataset', 'Machine Learning'],
-                    link: 'https://ieee-dataport.org/',
+                    link: 'https://dx.doi.org/10.21227/4k7j-nx86',
                     gradient: 'from-emerald-500 via-teal-600 to-cyan-500',
                     bgGradient: 'from-emerald-500/10 to-cyan-500/10'
                 }
@@ -1707,6 +1799,149 @@
             );
         };
 
+        // ACHIEVEMENTS PAGE - Premium Enhanced
+        const AchievementsPage = () => {
+            const [isVisible, setIsVisible] = useState(false);
+
+            useEffect(() => {
+                const timer = setTimeout(() => setIsVisible(true), 100);
+                return () => clearTimeout(timer);
+            }, []);
+
+            const achievements = [
+                {
+                    title: 'AIR 01 in FMAE MotoStudent 2024',
+                    category: 'EV Category',
+                    icon: Award,
+                    gradient: 'from-emerald-400 via-teal-500 to-cyan-500',
+                    description: 'Achieved All India Rank 01 in the FMAE MotoStudent 2024 competition in the Electric Vehicle category.'
+                },
+                {
+                    title: 'AIR 7747 in GATE DA 2025',
+                    category: '86th Percentile',
+                    icon: Target,
+                    gradient: 'from-emerald-500 to-teal-500',
+                    description: 'Secured 86th percentile with All India Rank 7747 in the Graduate Aptitude Test in Engineering (GATE) Data Science and AI exam 2025.'
+                },
+                {
+                    title: 'Member, SAE India',
+                    category: 'Professional Membership',
+                    icon: Briefcase,
+                    gradient: 'from-teal-500 to-cyan-500',
+                    description: 'Active member of the Society of Automotive Engineers India, contributing to automotive engineering initiatives.'
+                },
+                {
+                    title: 'Pre-finalist, ThingQbator Cohort 6',
+                    category: 'Innovation Program',
+                    icon: Rocket,
+                    gradient: 'from-emerald-400 to-cyan-500',
+                    description: 'Selected as pre-finalist in ThingQbator Cohort 6, a premier innovation and entrepreneurship program.'
+                },
+                {
+                    title: 'Second Runner-up, Amrita National Science Olympiad 2019',
+                    category: 'Academic Excellence',
+                    icon: Star,
+                    gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
+                    description: 'Secured third place in the Amrita National Science Olympiad 2019, demonstrating strong scientific aptitude.'
+                },
+                {
+                    title: 'Runner-up, Glider and Bridge Building',
+                    category: 'Tempestas 2023',
+                    icon: Zap,
+                    gradient: 'from-teal-500 to-cyan-600',
+                    description: 'Achieved runner-up position in Glider and Bridge Building competitions at Tempestas 2023.'
+                },
+                {
+                    title: 'Captain, Amrita Aquatics',
+                    category: 'Individual Champion 2023',
+                    icon: TrendingUp,
+                    gradient: 'from-emerald-400 via-cyan-500 to-teal-500',
+                    description: 'Served as Captain of Amrita Aquatics and won Individual Champion at the Inter-University Swimming Meet 2023.'
+                },
+                {
+                    title: 'Tamil Nadu State Junior Water Polo Team',
+                    category: 'State & National Level',
+                    icon: Award,
+                    gradient: 'from-cyan-500 to-teal-500',
+                    description: 'Member of Tamil Nadu State Junior Water Polo Team (2019) and participant in All India Inter-University Games 2023.'
+                }
+            ];
+
+            return (
+                <div className="max-w-7xl mx-auto py-12">
+                    {/* Header Section */}
+                    <div className={`text-center mb-16 ${isVisible ? 'slide-in-up' : 'opacity-0'}`}>
+                        <div className="inline-flex items-center gap-3 px-6 py-3 glass-strong rounded-full mb-6">
+                            <Award className="w-6 h-6 text-emerald-400" />
+                            <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500">
+                                Achievements & Recognition
+                            </span>
+                        </div>
+                        <h1 className="text-5xl md:text-6xl font-black text-white mb-6">
+                            Milestones &{' '}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 gradient-text">
+                                Accomplishments
+                            </span>
+                        </h1>
+                        <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                            A collection of awards, honors, and recognitions earned through dedication, innovation, and excellence
+                        </p>
+                    </div>
+
+                    {/* Achievements Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {achievements.map((achievement, index) => (
+                            <div
+                                key={index}
+                                className={`group glass-strong rounded-3xl p-8 hover:scale-105 transition-all duration-500 border border-slate-700/50 hover:border-emerald-500/50 relative overflow-hidden ${
+                                    isVisible ? 'scale-in' : 'opacity-0'
+                                }`}
+                                style={{ animationDelay: `${index * 0.1}s` }}
+                            >
+                                {/* Background Gradient */}
+                                <div className={`absolute inset-0 bg-gradient-to-br ${achievement.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
+
+                                {/* Icon */}
+                                <div className="relative">
+                                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${achievement.gradient} p-4 mb-6 group-hover:scale-110 transition-transform duration-500`}>
+                                        <achievement.icon className="w-full h-full text-white" />
+                                    </div>
+
+                                    {/* Title & Category */}
+                                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-cyan-500 transition-all">
+                                        {achievement.title}
+                                    </h3>
+                                    <div className={`inline-block px-4 py-1.5 rounded-full bg-gradient-to-r ${achievement.gradient} bg-opacity-20 mb-4`}>
+                                        <span className="text-sm font-semibold text-emerald-400">
+                                            {achievement.category}
+                                        </span>
+                                    </div>
+
+                                    {/* Description */}
+                                    <p className="text-slate-400 leading-relaxed">
+                                        {achievement.description}
+                                    </p>
+                                </div>
+
+                                {/* Decorative Corner */}
+                                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${achievement.gradient} opacity-10 blur-3xl group-hover:opacity-20 transition-opacity duration-500`}></div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Bottom CTA */}
+                    <div className="text-center mt-16">
+                        <div className="inline-flex items-center gap-3 px-8 py-4 glass-strong rounded-2xl">
+                            <Sparkles className="w-6 h-6 text-emerald-400" />
+                            <span className="text-lg text-slate-300">
+                                More achievements on the way...
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
         // CONTACT PAGE - Premium Enhanced
         const ContactPage = () => {
             const [formData, setFormData] = useState({
@@ -1735,7 +1970,7 @@
                 }
 
                 // Create mailto link with form data
-                const mailtoLink = `mailto:guhan_s@zohomail.in?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+                const mailtoLink = `mailto:guhan_s@zohomail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
                     `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
                 )}`;
 
@@ -1744,7 +1979,7 @@
 
                 // Show success message
                 setFormStatus('success');
-                alert('Opening your email client...\n\nIf it doesn\'t open automatically, please email me directly at guhan_s@zohomail.in');
+                alert('Opening your email client...\n\nIf it doesn\'t open automatically, please email me directly at guhan_s@zohomail.com');
 
                 // Reset form
                 setFormData({
@@ -1762,8 +1997,8 @@
                 {
                     icon: Mail,
                     label: 'Email',
-                    value: 'guhan_s@zohomail.in',
-                    link: 'mailto:guhan_s@zohomail.in',
+                    value: 'guhan_s@zohomail.com',
+                    link: 'mailto:guhan_s@zohomail.com',
                     gradient: 'from-emerald-500 to-cyan-500',
                     bgGradient: 'from-emerald-500/10 to-cyan-500/10'
                 },
@@ -1937,7 +2172,7 @@
                         {[
                             { href: 'https://github.com/sriguhan7764', icon: Github, gradient: 'from-emerald-500 to-teal-500' },
                             { href: 'https://www.linkedin.com/in/guhan-srinivasamoorthy/', icon: Linkedin, gradient: 'from-teal-500 to-cyan-500' },
-                            { href: 'mailto:guhan_s@zohomail.in', icon: Mail, gradient: 'from-emerald-400 to-cyan-500' }
+                            { href: 'mailto:guhan_s@zohomail.com', icon: Mail, gradient: 'from-emerald-400 to-cyan-500' }
                         ].map((social, idx) => (
                             <a
                                 key={idx}
