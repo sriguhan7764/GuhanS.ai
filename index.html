@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guhan | AI & Robotics Engineer</title>
+    <meta name="description" content="Portfolio of Guhan - AI Engineer & Robotics Researcher specializing in Computer Vision, SLAM, and Autonomous Systems">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        'gradient': 'gradient 8s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                    },
+                    keyframes: {
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-1000px 0' },
+                            '100%': { backgroundPosition: '1000px 0' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- React & Icons -->
+    <script type="importmap">
+    {
+        "imports": {
+            "react": "https://esm.sh/react@18.2.0",
+            "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+            "lucide-react": "https://esm.sh/lucide-react@0.263.1"
+        }
+    }
+    </script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            background: #0a0a0f;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #34D399, #06B6D4);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #10B981, #0891B2);
+        }
+
+        /* Enhanced Animations */
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rotateIn {
+            from {
+                opacity: 0;
+                transform: rotate(-10deg) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: rotate(0deg) scale(1);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .page-transition {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 0.7s ease-out;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.7s ease-out;
+        }
+
+        .slide-in-up {
+            animation: slideInUp 0.7s ease-out;
+        }
+
+        .scale-in {
+            animation: scaleIn 0.6s ease-out;
+        }
+
+        .rotate-in {
+            animation: rotateIn 0.7s ease-out;
+        }
+
+        .bounce-in {
+            animation: bounceIn 0.8s ease-out;
+        }
+
+        /* Enhanced Glass Effect */
+        .glass {
+            background: rgba(19, 22, 28, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-strong {
+            background: rgba(19, 22, 28, 0.95);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background-size: 200% 200%;
+            animation: gradient-shift 4s ease infinite;
+        }
+
+        /* Enhanced Glow Effects */
+        .glow-emerald {
+            box-shadow: 0 0 40px rgba(52, 211, 153, 0.5), 0 0 80px rgba(52, 211, 153, 0.3);
+        }
+
+        .glow-cyan {
+            box-shadow: 0 0 40px rgba(6, 182, 212, 0.5), 0 0 80px rgba(6, 182, 212, 0.3);
+        }
+
+        .glow-teal {
+            box-shadow: 0 0 40px rgba(20, 184, 166, 0.5), 0 0 80px rgba(20, 184, 166, 0.3);
+        }
+
+        /* Floating Animation */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Decorative Shapes */
+        .shape-blob {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        /* Shimmer Effect */
+        .shimmer {
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 100%
+            );
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Enhanced Hover States */
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Gradient Borders */
+        .gradient-border {
+            position: relative;
+            background: transparent;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(135deg, #34D399, #14B8A6, #06B6D4);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        @media print {
+            .no-print { display: none !important; }
+        }
+
+        /* Particle Container */
+        .particle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Decorative Background Shapes */
+        .bg-shape {
+            position: fixed;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .bg-shape-1 {
+            top: 10%;
+            left: 5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #34D399 0%, transparent 70%);
+            filter: blur(60px);
+        }
+
+        .bg-shape-2 {
+            top: 50%;
+            right: 10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #06B6D4 0%, transparent 70%);
+            filter: blur(80px);
+        }
+
+        .bg-shape-3 {
+            bottom: 10%;
+            left: 20%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, #14B8A6 0%, transparent 70%);
+            filter: blur(70px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Decorative Shapes -->
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+    <div class="bg-shape bg-shape-3"></div>
+
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+        import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+        import { createRoot } from 'react-dom/client';
+        import {
+            Github, Linkedin, Mail, Phone, Download, ExternalLink,
+            Code, Cpu, Database, Globe, Menu, X, Terminal,
+            Award, BookOpen, Briefcase, User, ChevronRight,
+            Home, Zap, Target, TrendingUp, ArrowLeft, Sparkles,
+            Rocket, Star, Heart, Coffee, MapPin, Calendar
+        } from 'lucide-react';
+
+        const Portfolio = () => {
+            const [currentPage, setCurrentPage] = useState('home');
+            const [isMenuOpen, setIsMenuOpen] = useState(false);
+            const [scrollY, setScrollY] = useState(0);
+            const canvasRef = useRef(null);
+
+            // Scroll handler for parallax effects
+            useEffect(() => {
+                const handleScroll = () => {
+                    setScrollY(window.scrollY);
+                };
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            // Enhanced Neural Network Animation with Dynamic Colors
+            useEffect(() => {
+                const canvas = canvasRef.current;
+                if (!canvas) return;
+
+                const ctx = canvas.getContext('2d');
+                let width = canvas.width = window.innerWidth;
+                let height = canvas.height = window.innerHeight;
+
+                let particles = [];
+                const particleCount = width < 768 ? 40 : 80;
+
+                const colorPalettes = [
+                    { r: 52, g: 211, b: 153 },   // Emerald
+                    { r: 16, g: 185, b: 129 },   // Emerald darker
+                    { r: 6, g: 182, b: 212 },    // Cyan
+                    { r: 20, g: 184, b: 166 },   // Teal
+                    { r: 45, g: 212, b: 191 },   // Teal lighter
+                ];
+
+                class Particle {
+                    constructor() {
+                        this.reset();
+                        this.colorIndex = Math.floor(Math.random() * colorPalettes.length);
+                    }
+
+                    reset() {
+                        this.x = Math.random() * width;
+                        this.y = Math.random() * height;
+                        this.vx = (Math.random() - 0.5) * 0.8;
+                        this.vy = (Math.random() - 0.5) * 0.8;
+                        this.size = Math.random() * 2.5 + 1;
+                    }
+
+                    update() {
+                        this.x += this.vx;
+                        this.y += this.vy;
+                        if (this.x < 0 || this.x > width) this.vx *= -1;
+                        if (this.y < 0 || this.y > height) this.vy *= -1;
+                    }
+
+                    draw() {
+                        const color = colorPalettes[this.colorIndex];
+                        ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, 0.6)`;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.fill();
+
+                        // Add glow effect
+                        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3);
+                        gradient.addColorStop(0, `rgba(${color.r}, ${color.g}, ${color.b}, 0.3)`);
+                        gradient.addColorStop(1, `rgba(${color.r}, ${color.g}, ${color.b}, 0)`);
+                        ctx.fillStyle = gradient;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle());
+                }
+
+                let animationId;
+                const animate = () => {
+                    ctx.clearRect(0, 0, width, height);
+
+                    particles.forEach((p, i) => {
+                        p.update();
+                        p.draw();
+
+                        // Draw connections with gradient colors
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const p2 = particles[j];
+                            const dx = p.x - p2.x;
+                            const dy = p.y - p2.y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+
+                            if (dist < 150) {
+                                const color1 = colorPalettes[p.colorIndex];
+                                const color2 = colorPalettes[p2.colorIndex];
+                                const opacity = 0.2 * (1 - dist / 150);
+
+                                const gradient = ctx.createLinearGradient(p.x, p.y, p2.x, p2.y);
+                                gradient.addColorStop(0, `rgba(${color1.r}, ${color1.g}, ${color1.b}, ${opacity})`);
+                                gradient.addColorStop(1, `rgba(${color2.r}, ${color2.g}, ${color2.b}, ${opacity})`);
+
+                                ctx.strokeStyle = gradient;
+                                ctx.lineWidth = 1.5;
+                                ctx.beginPath();
+                                ctx.moveTo(p.x, p.y);
+                                ctx.lineTo(p2.x, p2.y);
+                                ctx.stroke();
+                            }
+                        }
+                    });
+
+                    animationId = requestAnimationFrame(animate);
+                };
+                animate();
+
+                const handleResize = () => {
+                    width = canvas.width = window.innerWidth;
+                    height = canvas.height = window.innerHeight;
+                };
+
+                window.addEventListener('resize', handleResize);
+
+                return () => {
+                    window.removeEventListener('resize', handleResize);
+                    cancelAnimationFrame(animationId);
+                };
+            }, []);
+
+            const navigateTo = useCallback((page) => {
+                setCurrentPage(page);
+                setIsMenuOpen(false);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, []);
+
+            const handleDownloadResume = useCallback(() => {
+                try {
+                    const link = document.createElement('a');
+                    link.href = 'Resume.pdf';
+                    link.download = 'Guhan_Resume.pdf';
+                    link.click();
+                } catch (error) {
+                    console.error('Error downloading resume:', error);
+                    alert('Unable to download resume. Please try again.');
+                }
+            }, []);
+
+            // Navigation Component
+            const Navigation = () => {
+                const navItems = useMemo(() => [
+                    { name: 'Home', icon: Home, gradient: 'from-emerald-400 to-cyan-500' },
+                    { name: 'About', icon: User, gradient: 'from-emerald-500 to-teal-500' },
+                    { name: 'Experience', icon: Briefcase, gradient: 'from-teal-500 to-cyan-500' },
+                    { name: 'Projects', icon: Code, gradient: 'from-teal-500 to-cyan-500' },
+                    { name: 'Skills', icon: Cpu, gradient: 'from-emerald-500 to-teal-500' },
+                    { name: 'Publications', icon: BookOpen, gradient: 'from-emerald-500 to-teal-500' },
+                    { name: 'Contact', icon: Mail, gradient: 'from-emerald-400 to-cyan-500' }
+                ], []);
+
+                return (
+                    <nav className="fixed top-0 w-full z-50 glass-strong no-print shadow-2xl">
+                        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                            <div
+                                className="font-black text-2xl md:text-3xl tracking-tight cursor-pointer group"
+                                onClick={() => navigateTo('home')}
+                            >
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 gradient-text">
+                                    GUHAN
+                                </span>
+                                <span className="ml-2 text-xs text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    Portfolio
+                                </span>
+                            </div>
+
+                            <div className="hidden md:flex items-center gap-2">
+                                {navItems.map((item) => (
+                                    <button
+                                        key={item.name}
+                                        onClick={() => navigateTo(item.name.toLowerCase())}
+                                        className={`group relative flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 ${
+                                            currentPage === item.name.toLowerCase()
+                                                ? `bg-gradient-to-r ${item.gradient} text-white shadow-lg`
+                                                : 'text-slate-300 hover:text-white'
+                                        }`}
+                                    >
+                                        <item.icon className="w-4 h-4" />
+                                        <span className="text-sm font-semibold">{item.name}</span>
+                                        {currentPage !== item.name.toLowerCase() && (
+                                            <div className={`absolute inset-0 rounded-xl bg-gradient-to-r ${item.gradient} opacity-0 group-hover:opacity-10 transition-opacity`}></div>
+                                        )}
+                                    </button>
+                                ))}
+                            </div>
+
+                            <button
+                                className="md:hidden p-2 text-slate-300 hover:text-white transition-colors"
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            >
+                                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                            </button>
+                        </div>
+
+                        {/* Enhanced Mobile Menu */}
+                        <div className={`md:hidden glass-strong border-t border-slate-700/50 transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-screen' : 'max-h-0'}`}>
+                            {navItems.map((item, idx) => (
+                                <button
+                                    key={item.name}
+                                    onClick={() => navigateTo(item.name.toLowerCase())}
+                                    className={`flex items-center gap-3 w-full py-4 px-6 text-lg font-semibold transition-all ${
+                                        currentPage === item.name.toLowerCase()
+                                            ? `bg-gradient-to-r ${item.gradient} text-white`
+                                            : 'text-slate-400 hover:bg-slate-800/50 hover:text-white'
+                                    }`}
+                                    style={{ animationDelay: `${idx * 0.05}s` }}
+                                >
+                                    <item.icon className="w-5 h-5" />
+                                    {item.name}
+                                </button>
+                            ))}
+                        </div>
+                    </nav>
+                );
+            };
+
+            // HOME PAGE - Enhanced with Premium Design
+            const HomePage = () => (
+                <div className="min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-hidden">
+                    {/* Floating Decorative Elements */}
+                    <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl float" style={{ animationDelay: '0s' }}></div>
+                    <div className="absolute bottom-20 right-10 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl float" style={{ animationDelay: '2s' }}></div>
+                    <div className="absolute top-1/2 left-1/4 w-36 h-36 bg-teal-500/10 rounded-full blur-3xl float" style={{ animationDelay: '4s' }}></div>
+
+                    <div className="max-w-7xl mx-auto text-center relative z-10">
+                        <div className="scale-in">
+                            {/* Status Badge */}
+                            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass mb-8 border border-emerald-500/30 hover:border-emerald-500/60 transition-all hover:scale-105">
+                                <span className="relative flex h-3 w-3">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-gradient-to-r from-emerald-400 to-cyan-500"></span>
+                                </span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500 font-bold">
+                                    Available for Opportunities
+                                </span>
+                                <Sparkles className="w-4 h-4 text-emerald-400" />
+                            </div>
+
+                            {/* Main Heading with Enhanced Gradient */}
+                            <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
+                                Hi, I'm{' '}
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 gradient-text inline-block">
+                                    Guhan
+                                </span>
+                            </h1>
+
+                            {/* Subtitle with Multiple Gradients */}
+                            <div className="text-xl md:text-2xl font-bold mb-6 flex flex-wrap justify-center gap-3">
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500">
+                                    AI Engineer
+                                </span>
+                                <span className="text-slate-500">&</span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-cyan-500">
+                                    Robotics Researcher
+                                </span>
+                            </div>
+
+                            {/* Description */}
+                            <p className="text-base md:text-lg text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed">
+                                Crafting intelligent systems at the intersection of{' '}
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400 font-semibold">
+                                    Computer Vision
+                                </span>
+                                ,{' '}
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500 font-semibold">
+                                    Robotics
+                                </span>
+                                , and{' '}
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-cyan-500 font-semibold">
+                                    Deep Learning
+                                </span>
+                                .
+                            </p>
+
+                            {/* CTA Buttons - Premium Design */}
+                            <div className="flex flex-wrap justify-center gap-6 mb-12">
+                                <button
+                                    onClick={() => navigateTo('projects')}
+                                    className="group relative px-6 py-3 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white font-bold rounded-2xl transition-all hover:scale-110 shadow-2xl overflow-hidden"
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <div className="relative flex items-center gap-3">
+                                        <Rocket className="w-5 h-5" />
+                                        <span className="text-base">View Projects</span>
+                                        <ChevronRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                                    </div>
+                                </button>
+
+                                <button
+                                    onClick={handleDownloadResume}
+                                    className="group px-6 py-3 glass-strong hover:bg-slate-800/80 text-white font-bold rounded-2xl transition-all hover:scale-110 shadow-2xl border-2 border-slate-700 hover:border-emerald-500/50"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <Download className="w-5 h-5 text-emerald-400" />
+                                        <span className="text-base">Download Resume</span>
+                                    </div>
+                                </button>
+
+                                <button
+                                    onClick={() => navigateTo('contact')}
+                                    className="group px-6 py-3 border-3 border-transparent bg-gradient-to-r from-teal-500 to-cyan-500 bg-clip-padding text-white font-bold rounded-2xl transition-all hover:scale-110 shadow-2xl relative overflow-hidden"
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-r from-teal-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <div className="relative flex items-center gap-3">
+                                        <Heart className="w-5 h-5" />
+                                        <span className="text-base">Let's Connect</span>
+                                    </div>
+                                </button>
+                            </div>
+
+                            {/* Social Links - Enhanced */}
+                            <div className="flex justify-center gap-6">
+                                <a
+                                    href="https://github.com/sriguhan7764"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group p-5 glass-strong rounded-2xl hover:scale-125 transition-all shadow-xl border border-slate-700 hover:border-emerald-500/50"
+                                >
+                                    <Github className="w-6 h-6 text-slate-300 group-hover:text-emerald-400 transition-colors" />
+                                </a>
+                                <a
+                                    href="https://www.linkedin.com/in/guhan-srinivasamoorthy/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group p-5 glass-strong rounded-2xl hover:scale-125 transition-all shadow-xl border border-slate-700 hover:border-cyan-500/50"
+                                >
+                                    <Linkedin className="w-6 h-6 text-slate-300 group-hover:text-cyan-400 transition-colors" />
+                                </a>
+                                <a
+                                    href="mailto:guhan.s@zohomail.in"
+                                    className="group p-5 glass-strong rounded-2xl hover:scale-125 transition-all shadow-xl border border-slate-700 hover:border-teal-500/50"
+                                >
+                                    <Mail className="w-6 h-6 text-slate-300 group-hover:text-teal-400 transition-colors" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+
+            // Render current page
+            const renderPage = () => {
+                const pages = {
+                    'home': <HomePage />,
+                    'about': <div className="min-h-screen pt-24 px-6 page-transition"><AboutPage navigateTo={navigateTo} /></div>,
+                    'experience': <div className="min-h-screen pt-24 px-6 page-transition"><ExperiencePage navigateTo={navigateTo} /></div>,
+                    'projects': <div className="min-h-screen pt-24 px-6 page-transition"><ProjectsPage /></div>,
+                    'skills': <div className="min-h-screen pt-24 px-6 page-transition"><SkillsPage /></div>,
+                    'publications': <div className="min-h-screen pt-24 px-6 page-transition"><PublicationsPage navigateTo={navigateTo} /></div>,
+                    'contact': <div className="min-h-screen pt-24 px-6 page-transition"><ContactPage /></div>,
+                };
+
+                return pages[currentPage] || <HomePage />;
+            };
+
+            return (
+                <div className="min-h-screen text-slate-200 font-sans overflow-x-hidden">
+                    <canvas ref={canvasRef} className="fixed inset-0 z-0 opacity-40 pointer-events-none" />
+                    <div className="relative z-10">
+                        <Navigation />
+                        {renderPage()}
+                    </div>
+                </div>
+            );
+        };
+
+        // ABOUT PAGE - Premium Enhanced
+        const AboutPage = ({ navigateTo }) => {
+            const [isVisible, setIsVisible] = useState(false);
+
+            useEffect(() => {
+                const timer = setTimeout(() => setIsVisible(true), 100);
+                return () => clearTimeout(timer);
+            }, []);
+
+            const achievements = [
+                {
+                    label: 'AIR 01',
+                    description: 'EV Category',
+                    icon: Award,
+                    gradient: 'from-emerald-400 via-teal-500 to-cyan-500',
+                    glow: 'glow-emerald'
+                },
+                {
+                    label: '95%',
+                    description: 'Detection Accuracy',
+                    icon: Target,
+                    gradient: 'from-emerald-400 via-teal-500 to-cyan-500',
+                    glow: 'glow-teal'
+                },
+                {
+                    label: '10+',
+                    description: 'Major Projects',
+                    icon: Code,
+                    gradient: 'from-emerald-500 to-teal-500',
+                    glow: 'glow-emerald'
+                },
+                {
+                    label: '2',
+                    description: 'Publications',
+                    icon: BookOpen,
+                    gradient: 'from-teal-500 to-cyan-500',
+                    glow: 'glow-cyan'
+                }
+            ];
+
+            const education = [
+                {
+                    degree: 'M.Tech in Artificial Intelligence Engineering',
+                    institution: 'Amrita Vishwa Vidyapeetham',
+                    period: '2025 - 2027',
+                    description: 'Specializing in Computer Vision, Deep Learning, and Autonomous Systems',
+                    gradient: 'from-emerald-400 to-cyan-500'
+                },
+                {
+                    degree: 'B.Tech in Automation and Robotics',
+                    institution: 'Amrita Vishwa Vidyapeetham',
+                    period: '2021 - 2025',
+                    description: 'CGPA: 7.48/10',
+                    gradient: 'from-emerald-500 to-teal-500'
+                }
+            ];
+
+            return (
+                <div className="max-w-7xl mx-auto pb-20">
+                    {/* Enhanced Header */}
+                    <div className="mb-10">
+                        <h1 className="text-4xl md:text-5xl font-black text-white mb-6 slide-in-left">
+                            About{' '}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 gradient-text">
+                                Me
+                            </span>
+                        </h1>
+                        <div className="w-32 h-2 bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 rounded-full mb-6 slide-in-left" style={{ animationDelay: '0.1s' }}></div>
+                        <p className="text-xl text-slate-400 max-w-3xl slide-in-left" style={{ animationDelay: '0.2s' }}>
+                            Passionate about building the future with AI and Robotics
+                        </p>
+                    </div>
+
+                    {/* Achievement Cards - Premium Design */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                        {achievements.map((item, idx) => (
+                            <div
+                                key={idx}
+                                className={`glass-strong rounded-3xl p-8 hover:scale-110 transition-all duration-500 hover-lift hover:${item.glow} bounce-in cursor-pointer group`}
+                                style={{ animationDelay: `${idx * 0.1}s` }}
+                            >
+                                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform shadow-xl`}>
+                                    <item.icon className="w-8 h-8 text-white" />
+                                </div>
+                                <div className={`text-5xl font-black mb-3 text-transparent bg-clip-text bg-gradient-to-r ${item.gradient}`}>
+                                    {item.label}
+                                </div>
+                                <div className="text-slate-400 font-semibold">{item.description}</div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Personal Statement - Enhanced */}
+                    <div className="glass-strong rounded-3xl p-6 mb-10 slide-in-right hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 border-2 border-slate-700 hover:border-emerald-500/50">
+                        <div className="flex items-center gap-4 mb-8">
+                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-cyan-500 flex items-center justify-center">
+                                <User className="w-6 h-6 text-white" />
+                            </div>
+                            <h2 className="text-3xl font-black text-white">Who I Am</h2>
+                        </div>
+                        <div className="space-y-6 text-slate-300 text-lg leading-relaxed">
+                            <p>
+                                I'm a passionate{' '}
+                                <strong className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500 font-bold">
+                                    AI Engineer and Robotics Researcher
+                                </strong>{' '}
+                                pursuing my M.Tech in Artificial Intelligence Engineering at Amrita Vishwa Vidyapeetham. My journey in technology is driven by a fascination with creating intelligent systems that can perceive, understand, and interact with the world.
+                            </p>
+                            <p>
+                                With expertise spanning{' '}
+                                <strong className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400 font-bold">
+                                    Computer Vision
+                                </strong>
+                                ,{' '}
+                                <strong className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500 font-bold">
+                                    Deep Learning
+                                </strong>
+                                , and{' '}
+                                <strong className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500 font-bold">
+                                    Autonomous Systems
+                                </strong>
+                                , I've led projects that achieved remarkable results - from securing AIR 01 in the EV category as Powertrain Lead at Moto Amrita to developing UAV systems with 95% detection accuracy.
+                            </p>
+                            <p>
+                                I believe in the transformative power of AI and robotics to solve real-world challenges. Whether it's optimizing agricultural processes with multi-agent systems, advancing autonomous navigation with SLAM algorithms, or pushing the boundaries of generative AI for 3D design - I'm constantly exploring the cutting edge of technology.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Education Timeline - Premium */}
+                    <div className="mb-10">
+                        <div className="flex items-center gap-4 mb-10">
+                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center">
+                                <BookOpen className="w-6 h-6 text-white" />
+                            </div>
+                            <h2 className="text-3xl font-black text-white">Education Journey</h2>
+                        </div>
+                        <div className="space-y-8">
+                            {education.map((edu, idx) => (
+                                <div
+                                    key={idx}
+                                    className="relative pl-10 pb-8 border-l-4 border-transparent slide-in-left"
+                                    style={{
+                                        animationDelay: `${idx * 0.2}s`,
+                                        borderImage: `linear-gradient(to bottom, ${idx === 0 ? '#34D399, #06B6D4' : '#14B8A6, #0891B2'}) 1`
+                                    }}
+                                >
+                                    <div className={`absolute -left-3 top-0 w-6 h-6 rounded-full bg-gradient-to-r ${edu.gradient} shadow-lg animate-pulse`}></div>
+                                    <div className="glass-strong rounded-2xl p-8 ml-6 hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 border-2 border-slate-700 hover:border-emerald-500/50 group">
+                                        <div className="flex flex-wrap justify-between items-start mb-4">
+                                            <h3 className="text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-cyan-500 transition-all">
+                                                {edu.degree}
+                                            </h3>
+                                            <span className={`px-4 py-2 bg-gradient-to-r ${edu.gradient} text-white rounded-xl font-bold shadow-lg`}>
+                                                {edu.period}
+                                            </span>
+                                        </div>
+                                        <p className="text-slate-300 font-semibold mb-3 text-lg">{edu.institution}</p>
+                                        <p className="text-slate-400 text-lg">{edu.description}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Core Competencies - Enhanced */}
+                    <div className="glass-strong rounded-3xl p-6 slide-in-right border-2 border-slate-700 hover:border-teal-500/50 transition-all">
+                        <div className="flex items-center gap-4 mb-10">
+                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center">
+                                <Zap className="w-6 h-6 text-white" />
+                            </div>
+                            <h2 className="text-3xl font-black text-white">Core Competencies</h2>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {[
+                                { skill: 'Computer Vision & Object Detection', level: 95, gradient: 'from-emerald-400 to-cyan-500' },
+                                { skill: 'Deep Learning & Neural Networks', level: 90, gradient: 'from-emerald-500 to-teal-500' },
+                                { skill: 'Robotics & Autonomous Systems', level: 88, gradient: 'from-teal-500 to-cyan-500' },
+                                { skill: 'SLAM & Path Planning', level: 85, gradient: 'from-teal-500 to-cyan-500' },
+                                { skill: 'Cloud Computing (AWS)', level: 82, gradient: 'from-emerald-500 to-teal-500' },
+                                { skill: 'Embedded Systems & IoT', level: 80, gradient: 'from-emerald-500 to-teal-500' }
+                            ].map((item, idx) => (
+                                <div key={idx} className="scale-in" style={{ animationDelay: `${idx * 0.1}s` }}>
+                                    <div className="flex justify-between mb-3">
+                                        <span className="text-white font-bold text-lg">{item.skill}</span>
+                                        <span className={`font-black text-xl text-transparent bg-clip-text bg-gradient-to-r ${item.gradient}`}>
+                                            {item.level}%
+                                        </span>
+                                    </div>
+                                    <div className="h-4 bg-slate-800/80 rounded-full overflow-hidden border border-slate-700 shadow-inner">
+                                        <div
+                                            className={`h-full bg-gradient-to-r ${item.gradient} rounded-full transition-all duration-1000 ease-out shadow-lg relative`}
+                                            style={{ width: isVisible ? `${item.level}%` : '0%' }}
+                                        >
+                                            <div className="absolute inset-0 bg-white/20 shimmer"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // EXPERIENCE PAGE - Premium Enhanced
+        const ExperiencePage = ({ navigateTo }) => {
+            const experiences = [
+                {
+                    title: 'Powertrain Lead',
+                    company: 'Moto Amrita Racing',
+                    period: 'Dec 2023 - Feb 2025',
+                    location: 'Amrita Vishwa Vidyapeetham',
+                    type: 'Leadership Role',
+                    achievements: [
+                        'Led team to secure AIR 01 in the Electric Vehicle category at national competition',
+                        'Designed and implemented custom fuel tank system with advanced thermal management',
+                        'Developed innovative battery cooling solution improving performance by 30%',
+                        'Coordinated cross-functional team of 15+ members across mechanical and electrical domains',
+                        'Optimized powertrain efficiency resulting in 25% increase in range'
+                    ],
+                    skills: ['Team Leadership', 'System Design', 'Thermal Analysis', 'CAD/CAM', 'Electric Vehicles'],
+                    icon: Award,
+                    gradient: 'from-emerald-400 via-teal-500 to-cyan-500',
+                    bgGradient: 'from-emerald-500/10 to-cyan-500/10'
+                },
+                {
+                    title: 'Research Intern - UAV Systems',
+                    company: 'Amrita Vishwa Vidyapeetham',
+                    period: 'Summer 2024',
+                    location: 'Coimbatore, India',
+                    type: 'Research',
+                    achievements: [
+                        'Developed autonomous UAV system achieving 95% object detection accuracy',
+                        'Integrated Pixhawk 6X flight controller with custom computer vision pipeline',
+                        'Implemented real-time image processing algorithms for agricultural monitoring',
+                        'Conducted field tests demonstrating robust performance in varied conditions',
+                        'Published research findings on drone-based crop health assessment'
+                    ],
+                    skills: ['Computer Vision', 'ROS2', 'Python', 'Pixhawk', 'Deep Learning', 'YOLO'],
+                    icon: Target,
+                    gradient: 'from-emerald-400 via-teal-500 to-cyan-500',
+                    bgGradient: 'from-teal-500/10 to-cyan-500/10'
+                }
+            ];
+
+            return (
+                <div className="max-w-7xl mx-auto pb-20">
+                    {/* Enhanced Header */}
+                    <div className="mb-10">
+                        <h1 className="text-4xl md:text-5xl font-black text-white mb-6 slide-in-left">
+                            Professional{' '}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 gradient-text">
+                                Experience
+                            </span>
+                        </h1>
+                        <div className="w-32 h-2 bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 rounded-full mb-6 slide-in-left" style={{ animationDelay: '0.1s' }}></div>
+                        <p className="text-xl text-slate-400 max-w-3xl slide-in-left" style={{ animationDelay: '0.2s' }}>
+                            Building innovative solutions through leadership and research
+                        </p>
+                    </div>
+
+                    <div className="space-y-6">
+                        {experiences.map((exp, idx) => (
+                            <div
+                                key={idx}
+                                className={`glass-strong rounded-3xl p-6 slide-in-right hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 border-2 border-slate-700 hover:border-emerald-500/50 bg-gradient-to-br ${exp.bgGradient}`}
+                                style={{ animationDelay: `${idx * 0.2}s` }}
+                            >
+                                <div className="flex flex-col md:flex-row md:items-start gap-6">
+                                    {/* Enhanced Icon */}
+                                    <div className={`flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br ${exp.gradient} flex items-center justify-center shadow-2xl hover:rotate-12 transition-transform`}>
+                                        <exp.icon className="w-10 h-10 text-white" />
+                                    </div>
+
+                                    <div className="flex-1">
+                                        {/* Header */}
+                                        <div className="flex flex-wrap justify-between items-start mb-6">
+                                            <div>
+                                                <h2 className="text-2xl font-black text-white mb-3 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-emerald-400 hover:to-cyan-500 transition-all cursor-default">
+                                                    {exp.title}
+                                                </h2>
+                                                <p className={`text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${exp.gradient}`}>
+                                                    {exp.company}
+                                                </p>
+                                                <p className="text-slate-400 mt-2 flex items-center gap-2">
+                                                    <MapPin className="w-4 h-4" />
+                                                    {exp.location}
+                                                </p>
+                                            </div>
+                                            <div className="flex flex-col gap-3 items-end">
+                                                <span className={`px-5 py-2.5 bg-gradient-to-r ${exp.gradient} text-white rounded-xl font-bold shadow-lg`}>
+                                                    <div className="flex items-center gap-2">
+                                                        <Calendar className="w-4 h-4" />
+                                                        {exp.period}
+                                                    </div>
+                                                </span>
+                                                <span className="px-4 py-2 glass text-cyan-400 font-bold rounded-xl border border-cyan-500/30">
+                                                    {exp.type}
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        {/* Achievements */}
+                                        <div className="mb-8">
+                                            <h3 className="text-xl font-bold text-white mb-5 flex items-center gap-3">
+                                                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center">
+                                                    <TrendingUp className="w-5 h-5 text-white" />
+                                                </div>
+                                                Key Achievements
+                                            </h3>
+                                            <ul className="space-y-3">
+                                                {exp.achievements.map((achievement, i) => (
+                                                    <li
+                                                        key={i}
+                                                        className="flex items-start gap-4 text-slate-300 text-lg scale-in hover:text-white transition-colors group"
+                                                        style={{ animationDelay: `${0.3 + i * 0.1}s` }}
+                                                    >
+                                                        <div className={`flex-shrink-0 w-6 h-6 rounded-lg bg-gradient-to-br ${exp.gradient} flex items-center justify-center mt-0.5 group-hover:scale-125 transition-transform`}>
+                                                            <ChevronRight className="w-4 h-4 text-white" />
+                                                        </div>
+                                                        <span>{achievement}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+
+                                        {/* Skills */}
+                                        <div>
+                                            <h3 className="text-sm font-bold text-slate-400 mb-4 uppercase tracking-wider">
+                                                Technologies & Skills
+                                            </h3>
+                                            <div className="flex flex-wrap gap-3">
+                                                {exp.skills.map((skill, i) => (
+                                                    <span
+                                                        key={i}
+                                                        className={`px-5 py-2.5 glass text-white rounded-xl font-semibold border-2 border-transparent hover:border-orange-500/50 hover:scale-110 transition-all scale-in shadow-lg`}
+                                                        style={{ animationDelay: `${0.5 + i * 0.05}s` }}
+                                                    >
+                                                        {skill}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Enhanced CTA */}
+                    <div className="mt-16 glass-strong rounded-3xl p-8 text-center scale-in border-2 border-slate-700 hover:border-emerald-500/50 transition-all bg-gradient-to-br from-emerald-500/10 to-cyan-500/10">
+                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-400 to-cyan-500 flex items-center justify-center mx-auto mb-6">
+                            <Heart className="w-8 h-8 text-white" />
+                        </div>
+                        <h3 className="text-2xl font-black text-white mb-4">
+                            Interested in collaborating?
+                        </h3>
+                        <p className="text-slate-300 mb-8 text-lg max-w-2xl mx-auto">
+                            I'm always open to discussing new projects, creative ideas, and opportunities to be part of your visions.
+                        </p>
+                        <button
+                            onClick={() => navigateTo('contact')}
+                            className="group px-6 py-3 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white font-bold rounded-2xl hover:scale-110 transition-all shadow-2xl"
+                        >
+                            <div className="flex items-center gap-3">
+                                <Mail className="w-5 h-5" />
+                                <span className="text-base">Get In Touch</span>
+                                <ChevronRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        // PROJECTS PAGE - Premium Enhanced
+        const ProjectsPage = () => {
+            const projects = [
+                {
+                    title: '3D Generative Design with Diffusion Models',
+                    description: 'Advanced 3D shape generation system using diffusion models and neural networks. Implements state-of-the-art techniques for creating high-quality 3D assets from text descriptions.',
+                    tech: ['Python', 'PyTorch', 'Diffusion Models', 'Point Clouds', '3D Graphics'],
+                    github: 'https://github.com/sriguhan7764/3d-shape-generator',
+                    highlights: ['Text-to-3D generation', 'Novel view synthesis', 'High-resolution outputs'],
+                    gradient: 'from-emerald-400 via-teal-500 to-cyan-500',
+                    bgGradient: 'from-emerald-500/10 to-cyan-500/10'
+                },
+                {
+                    title: '2D SDF SLAM',
+                    description: 'Real-time Simultaneous Localization and Mapping using Signed Distance Fields. Enables accurate mapping and localization in complex indoor environments.',
+                    tech: ['C++', 'ROS2', 'OpenCV', 'PCL', 'SLAM'],
+                    github: 'https://github.com/sriguhan7764/2D-SDF-SLAM',
+                    highlights: ['Real-time performance', 'Loop closure detection', 'Dense mapping'],
+                    gradient: 'from-emerald-500 via-teal-500 to-cyan-600',
+                    bgGradient: 'from-emerald-500/10 to-cyan-500/10'
+                },
+                {
+                    title: 'Face Mask Detection System',
+                    description: 'Real-time face mask detection using deep learning for COVID-19 safety compliance. Deployed in production environments for automated monitoring.',
+                    tech: ['Python', 'TensorFlow', 'OpenCV', 'YOLO', 'Flask'],
+                    github: 'https://github.com/sriguhan7764/Face_Mask_Detection',
+                    highlights: ['95% accuracy', 'Real-time processing', 'Multi-face detection'],
+                    gradient: 'from-emerald-500 via-teal-600 to-cyan-500',
+                    bgGradient: 'from-emerald-500/10 to-cyan-500/10'
+                },
+                {
+                    title: 'AI Virtual Assistant',
+                    description: 'Intelligent virtual assistant with natural language processing, voice recognition, and task automation capabilities. Integrates multiple AI services.',
+                    tech: ['Python', 'NLP', 'Speech Recognition', 'API Integration', 'Machine Learning'],
+                    github: 'https://github.com/sriguhan7764/AI_Virtual_Assistant-',
+                    highlights: ['Voice-activated', 'Multi-task automation', 'Context awareness'],
+                    gradient: 'from-teal-400 via-cyan-500 to-cyan-600',
+                    bgGradient: 'from-teal-500/10 to-cyan-500/10'
+                },
+                {
+                    title: 'ROS2 Differential Drive Robot',
+                    description: 'Complete simulation and control stack for differential drive robots in ROS2. Features autonomous navigation, obstacle avoidance, and path planning.',
+                    tech: ['ROS2', 'Python', 'Gazebo', 'Navigation2', 'URDF'],
+                    github: 'https://github.com/sriguhan7764/ros2-diff-drive-simBot',
+                    highlights: ['Autonomous navigation', 'Sensor fusion', 'Dynamic obstacles'],
+                    gradient: 'from-emerald-500 to-teal-500',
+                    bgGradient: 'from-emerald-500/10 to-teal-500/10'
+                },
+                {
+                    title: 'Multi-Agent AgriTech Platform',
+                    description: 'Cloud-based multi-agent system for precision agriculture. Coordinates drones, ground robots, and IoT sensors for comprehensive farm monitoring and management.',
+                    tech: ['AWS', 'Python', 'Multi-Agent Systems', 'IoT', 'Machine Learning'],
+                    github: null,
+                    highlights: ['92% crop health accuracy', 'Scalable architecture', 'Real-time coordination'],
+                    gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
+                    bgGradient: 'from-emerald-500/10 to-cyan-500/10'
+                },
+                {
+                    title: 'LLM Prompt Optimization Engine',
+                    description: 'Advanced prompt engineering system that automatically optimizes LLM prompts for better performance and reduced token usage. Uses genetic algorithms and reinforcement learning.',
+                    tech: ['Python', 'OpenAI API', 'Reinforcement Learning', 'NLP', 'Optimization'],
+                    github: null,
+                    highlights: ['45% quality improvement', '60% token reduction', 'Automated testing'],
+                    gradient: 'from-teal-500 to-cyan-500',
+                    bgGradient: 'from-teal-500/10 to-cyan-500/10'
+                },
+                {
+                    title: 'Autonomous Crop Monitoring UAV',
+                    description: 'Fully autonomous drone system for agricultural monitoring with computer vision-based crop health assessment and automated flight planning.',
+                    tech: ['Pixhawk', 'Python', 'Computer Vision', 'YOLO', 'Mission Planner'],
+                    github: null,
+                    highlights: ['94% detection accuracy', 'Autonomous missions', 'NDVI analysis'],
+                    gradient: 'from-emerald-400 via-teal-500 to-teal-600',
+                    bgGradient: 'from-emerald-500/10 to-teal-500/10'
+                },
+                {
+                    title: 'Li-Ion Battery RUL Prediction',
+                    description: 'Machine learning system for predicting Remaining Useful Life of lithium-ion batteries. Uses time-series analysis and deep learning for accurate predictions.',
+                    tech: ['Python', 'LSTM', 'Time Series Analysis', 'Scikit-learn', 'Data Analytics'],
+                    github: null,
+                    highlights: ['RMSE <5%', 'Early degradation detection', 'Real-time monitoring'],
+                    gradient: 'from-teal-400 to-cyan-500',
+                    bgGradient: 'from-teal-500/10 to-cyan-500/10'
+                },
+                {
+                    title: 'Smart PLC Conveyor Sorting System',
+                    description: 'Industrial automation solution using PLCs and computer vision for intelligent product sorting. Reduces manual intervention and improves efficiency.',
+                    tech: ['PLC Programming', 'Computer Vision', 'Industrial Automation', 'SCADA', 'Python'],
+                    github: null,
+                    highlights: ['40% downtime reduction', '99% sorting accuracy', 'Predictive maintenance'],
+                    gradient: 'from-emerald-500 to-cyan-500',
+                    bgGradient: 'from-emerald-500/10 to-cyan-500/10'
+                }
+            ];
+
+            return (
+                <div className="max-w-7xl mx-auto pb-20">
+                    {/* Enhanced Header */}
+                    <div className="mb-10">
+                        <h1 className="text-4xl md:text-5xl font-black text-white mb-6 slide-in-left">
+                            Featured{' '}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 gradient-text">
+                                Projects
+                            </span>
+                        </h1>
+                        <div className="w-32 h-2 bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 rounded-full mb-6 slide-in-left" style={{ animationDelay: '0.1s' }}></div>
+                        <p className="text-xl text-slate-400 max-w-3xl slide-in-left" style={{ animationDelay: '0.2s' }}>
+                            A showcase of innovative solutions spanning AI, robotics, and computer vision
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {projects.map((project, idx) => (
+                            <div
+                                key={idx}
+                                className={`glass-strong rounded-3xl p-8 hover:shadow-2xl hover:scale-105 transition-all duration-500 group scale-in border-2 border-slate-700 hover:border-teal-500/50 bg-gradient-to-br ${project.bgGradient}`}
+                                style={{ animationDelay: `${idx * 0.1}s` }}
+                            >
+                                {/* Enhanced Gradient Header */}
+                                <div className={`h-2 bg-gradient-to-r ${project.gradient} rounded-full mb-6 shadow-lg`}></div>
+
+                                <h3 className="text-2xl font-black text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-teal-400 group-hover:to-cyan-400 transition-all">
+                                    {project.title}
+                                </h3>
+
+                                <p className="text-slate-300 mb-6 leading-relaxed text-lg">
+                                    {project.description}
+                                </p>
+
+                                {/* Highlights */}
+                                <div className="mb-6">
+                                    <div className="flex flex-wrap gap-2">
+                                        {project.highlights.map((highlight, i) => (
+                                            <span
+                                                key={i}
+                                                className={`text-sm px-4 py-2 glass text-transparent bg-clip-text bg-gradient-to-r ${project.gradient} rounded-xl border border-teal-500/30 font-bold`}
+                                            >
+                                                {highlight}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Tech Stack */}
+                                <div className="mb-8">
+                                    <div className="flex flex-wrap gap-2">
+                                        {project.tech.map((tech, i) => (
+                                            <span
+                                                key={i}
+                                                className="text-sm px-4 py-2 glass-strong text-slate-300 rounded-lg font-mono font-semibold hover:text-white hover:scale-110 transition-all"
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Links */}
+                                <div className="flex gap-4">
+                                    {project.github ? (
+                                        <a
+                                            href={project.github}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`flex items-center gap-3 px-6 py-3 bg-gradient-to-r ${project.gradient} text-white font-bold rounded-xl hover:shadow-2xl hover:scale-110 transition-all`}
+                                        >
+                                            <Github className="w-5 h-5" />
+                                            <span>View Code</span>
+                                            <ExternalLink className="w-4 h-4" />
+                                        </a>
+                                    ) : (
+                                        <div className="flex items-center gap-3 px-6 py-3 glass-strong text-slate-500 font-bold rounded-xl cursor-not-allowed border border-slate-700">
+                                            <Github className="w-5 h-5" />
+                                            <span>Private Project</span>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Enhanced GitHub CTA */}
+                    <div className="mt-16 glass-strong rounded-3xl p-8 text-center scale-in border-2 border-slate-700 hover:border-emerald-500/50 transition-all bg-gradient-to-br from-emerald-500/10 to-cyan-500/10">
+                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-400 to-cyan-500 flex items-center justify-center mx-auto mb-6">
+                            <Github className="w-8 h-8 text-white" />
+                        </div>
+                        <h3 className="text-2xl font-black text-white mb-4">Want to see more?</h3>
+                        <p className="text-slate-300 mb-8 text-lg max-w-2xl mx-auto">
+                            Check out my GitHub for additional projects, contributions, and open-source work
+                        </p>
+                        <a
+                            href="https://github.com/sriguhan7764"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white font-bold rounded-2xl hover:shadow-2xl hover:scale-110 transition-all"
+                        >
+                            <Github className="w-5 h-5" />
+                            <span className="text-base">Visit GitHub Profile</span>
+                            <ExternalLink className="w-5 h-5" />
+                        </a>
+                    </div>
+                </div>
+            );
+        };
+
+        // SKILLS PAGE - Premium Enhanced
+        const SkillsPage = () => {
+            const [isVisible, setIsVisible] = useState(false);
+
+            useEffect(() => {
+                const timer = setTimeout(() => setIsVisible(true), 100);
+                return () => clearTimeout(timer);
+            }, []);
+
+            const skillCategories = [
+                {
+                    category: 'Programming Languages',
+                    icon: Terminal,
+                    gradient: 'from-emerald-500 via-teal-500 to-cyan-600',
+                    bgGradient: 'from-emerald-500/10 to-cyan-500/10',
+                    skills: [
+                        { name: 'Python', level: 95 },
+                        { name: 'C++', level: 85 },
+                        { name: 'MATLAB', level: 80 },
+                        { name: 'JavaScript', level: 75 },
+                        { name: 'SQL', level: 70 }
+                    ]
+                },
+                {
+                    category: 'AI & Machine Learning',
+                    icon: Cpu,
+                    gradient: 'from-emerald-400 via-teal-500 to-cyan-500',
+                    bgGradient: 'from-emerald-500/10 to-cyan-500/10',
+                    skills: [
+                        { name: 'TensorFlow', level: 90 },
+                        { name: 'PyTorch', level: 90 },
+                        { name: 'Scikit-learn', level: 85 },
+                        { name: 'OpenCV', level: 92 },
+                        { name: 'YOLO', level: 88 }
+                    ]
+                },
+                {
+                    category: 'Robotics & Embedded',
+                    icon: Zap,
+                    gradient: 'from-emerald-500 to-teal-500',
+                    bgGradient: 'from-emerald-500/10 to-teal-500/10',
+                    skills: [
+                        { name: 'ROS2', level: 88 },
+                        { name: 'Gazebo', level: 82 },
+                        { name: 'Pixhawk', level: 85 },
+                        { name: 'SLAM', level: 80 },
+                        { name: 'Path Planning', level: 83 }
+                    ]
+                },
+                {
+                    category: 'Cloud & DevOps',
+                    icon: Globe,
+                    gradient: 'from-emerald-500 via-teal-600 to-cyan-500',
+                    bgGradient: 'from-emerald-500/10 to-cyan-500/10',
+                    skills: [
+                        { name: 'AWS (EC2, S3)', level: 82 },
+                        { name: 'Docker', level: 78 },
+                        { name: 'Git', level: 90 },
+                        { name: 'Linux', level: 85 },
+                        { name: 'Flask', level: 75 }
+                    ]
+                }
+            ];
+
+            const tools = [
+                { name: 'Visual Studio Code', gradient: 'from-emerald-400 to-teal-500' },
+                { name: 'PyCharm', gradient: 'from-emerald-500 to-teal-500' },
+                { name: 'MATLAB', gradient: 'from-teal-500 to-cyan-500' },
+                { name: 'SolidWorks', gradient: 'from-emerald-500 to-cyan-500' },
+                { name: 'AutoCAD', gradient: 'from-emerald-400 to-teal-500' },
+                { name: 'Gazebo', gradient: 'from-teal-500 to-cyan-500' },
+                { name: 'RViz', gradient: 'from-cyan-400 to-cyan-600' },
+                { name: 'Mission Planner', gradient: 'from-teal-500 to-cyan-500' },
+                { name: 'Arduino IDE', gradient: 'from-emerald-500 to-teal-500' },
+                { name: 'PlatformIO', gradient: 'from-emerald-400 to-cyan-500' },
+                { name: 'Jupyter', gradient: 'from-teal-400 to-cyan-500' },
+                { name: 'Google Colab', gradient: 'from-emerald-500 to-teal-600' },
+                { name: 'Postman', gradient: 'from-teal-500 to-cyan-500' },
+                { name: 'GitHub', gradient: 'from-emerald-400 to-cyan-500' },
+                { name: 'Docker Desktop', gradient: 'from-teal-500 to-cyan-500' }
+            ];
+
+            return (
+                <div className="max-w-7xl mx-auto pb-20">
+                    {/* Enhanced Header */}
+                    <div className="mb-10">
+                        <h1 className="text-4xl md:text-5xl font-black text-white mb-6 slide-in-left">
+                            Technical{' '}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 gradient-text">
+                                Skills
+                            </span>
+                        </h1>
+                        <div className="w-32 h-2 bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 rounded-full mb-6 slide-in-left" style={{ animationDelay: '0.1s' }}></div>
+                        <p className="text-xl text-slate-400 max-w-3xl slide-in-left" style={{ animationDelay: '0.2s' }}>
+                            A comprehensive overview of my technical expertise and proficiency levels
+                        </p>
+                    </div>
+
+                    {/* Skill Categories - Premium Design */}
+                    <div className="space-y-6 mb-10">
+                        {skillCategories.map((category, idx) => (
+                            <div
+                                key={idx}
+                                className={`glass-strong rounded-3xl p-6 slide-in-right hover:shadow-2xl transition-all duration-500 border-2 border-slate-700 hover:border-emerald-500/50 bg-gradient-to-br ${category.bgGradient}`}
+                                style={{ animationDelay: `${idx * 0.1}s` }}
+                            >
+                                <div className="flex items-center gap-5 mb-8">
+                                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${category.gradient} flex items-center justify-center shadow-2xl`}>
+                                        <category.icon className="w-8 h-8 text-white" />
+                                    </div>
+                                    <h2 className="text-3xl font-black text-white">{category.category}</h2>
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    {category.skills.map((skill, i) => (
+                                        <div key={i} className="scale-in" style={{ animationDelay: `${0.3 + i * 0.05}s` }}>
+                                            <div className="flex justify-between mb-3">
+                                                <span className="text-white font-bold text-lg">{skill.name}</span>
+                                                <span className={`font-black text-2xl text-transparent bg-clip-text bg-gradient-to-r ${category.gradient}`}>
+                                                    {skill.level}%
+                                                </span>
+                                            </div>
+                                            <div className="h-4 bg-slate-800/80 rounded-full overflow-hidden border border-slate-700 shadow-inner">
+                                                <div
+                                                    className={`h-full bg-gradient-to-r ${category.gradient} rounded-full transition-all duration-1000 ease-out shadow-lg relative`}
+                                                    style={{ width: isVisible ? `${skill.level}%` : '0%' }}
+                                                >
+                                                    <div className="absolute inset-0 bg-white/20 shimmer"></div>
+                                                    <div className={`absolute inset-0 bg-gradient-to-r ${category.gradient} opacity-50 blur-sm`}></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Tools & Technologies - Premium */}
+                    <div className="glass-strong rounded-3xl p-6 scale-in border-2 border-slate-700 hover:border-teal-500/50 transition-all bg-gradient-to-br from-teal-500/10 to-cyan-500/10">
+                        <div className="flex items-center gap-5 mb-8">
+                            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center shadow-2xl">
+                                <Database className="w-8 h-8 text-white" />
+                            </div>
+                            <h2 className="text-3xl font-black text-white">Tools & Technologies</h2>
+                        </div>
+                        <div className="flex flex-wrap gap-4">
+                            {tools.map((tool, idx) => (
+                                <span
+                                    key={idx}
+                                    className={`group px-6 py-3 glass-strong text-slate-200 rounded-xl font-bold hover:scale-110 transition-all cursor-default border-2 border-slate-700 hover:border-teal-500/50 scale-in relative overflow-hidden`}
+                                    style={{ animationDelay: `${idx * 0.03}s` }}
+                                >
+                                    <div className={`absolute inset-0 bg-gradient-to-r ${tool.gradient} opacity-0 group-hover:opacity-20 transition-opacity`}></div>
+                                    <span className="relative">{tool.name}</span>
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Learning Section - Enhanced */}
+                    <div className="mt-10 glass-strong rounded-3xl p-6 scale-in text-center border-2 border-slate-700 hover:border-emerald-500/50 transition-all bg-gradient-to-br from-emerald-500/10 to-cyan-500/10">
+                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-400 to-cyan-500 flex items-center justify-center mx-auto mb-6">
+                            <Sparkles className="w-8 h-8 text-white" />
+                        </div>
+                        <h3 className="text-2xl font-black text-white mb-5">Continuous Learning</h3>
+                        <p className="text-slate-300 mb-8 text-lg max-w-3xl mx-auto leading-relaxed">
+                            I'm constantly expanding my skillset through online courses, research papers, and hands-on projects.
+                            Currently exploring advanced topics in emerging AI technologies.
+                        </p>
+                        <div className="flex justify-center gap-4 flex-wrap">
+                            {[
+                                { name: 'Generative AI', gradient: 'from-emerald-500 to-teal-500' },
+                                { name: 'Reinforcement Learning', gradient: 'from-teal-500 to-cyan-500' },
+                                { name: 'Multi-Agent Systems', gradient: 'from-emerald-400 to-cyan-500' },
+                                { name: 'Edge AI', gradient: 'from-emerald-500 to-teal-600' }
+                            ].map((topic, idx) => (
+                                <span
+                                    key={idx}
+                                    className={`px-6 py-3 bg-gradient-to-r ${topic.gradient} text-white rounded-xl font-bold shadow-lg hover:scale-110 transition-all`}
+                                >
+                                    {topic.name}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // PUBLICATIONS PAGE - Premium Enhanced
+        const PublicationsPage = ({ navigateTo }) => {
+            const publications = [
+                {
+                    title: 'Real-Time Vibration Isolation System for Precision Manufacturing',
+                    authors: 'Guhan S., et al.',
+                    journal: 'International Journal of Scientific Research in Engineering and Management',
+                    year: '2025',
+                    doi: '10.55041/IJSREM53258',
+                    abstract: 'This research presents a novel approach to real-time vibration isolation in precision manufacturing environments. The system employs advanced control algorithms and adaptive damping mechanisms to significantly reduce vibration-induced errors in high-precision operations.',
+                    keywords: ['Vibration Control', 'Precision Manufacturing', 'Adaptive Systems', 'Control Theory'],
+                    link: 'https://doi.org/10.55041/IJSREM53258',
+                    gradient: 'from-emerald-500 via-teal-500 to-cyan-600',
+                    bgGradient: 'from-emerald-500/10 to-cyan-500/10'
+                },
+                {
+                    title: 'Drone-Based Cotton Crop Health Monitoring Dataset',
+                    authors: 'Guhan S., Research Team',
+                    journal: 'IEEE DataPort',
+                    year: '2025',
+                    doi: 'Available on IEEE DataPort',
+                    abstract: 'A comprehensive dataset for cotton crop health monitoring using UAV-based imaging. Includes multi-spectral imagery, annotated crop health indicators, and ground truth data collected across multiple growing seasons. Enables research in precision agriculture and computer vision applications.',
+                    keywords: ['Agriculture', 'Computer Vision', 'UAV', 'Dataset', 'Machine Learning'],
+                    link: 'https://ieee-dataport.org/',
+                    gradient: 'from-emerald-500 via-teal-600 to-cyan-500',
+                    bgGradient: 'from-emerald-500/10 to-cyan-500/10'
+                }
+            ];
+
+            return (
+                <div className="max-w-7xl mx-auto pb-20">
+                    {/* Enhanced Header */}
+                    <div className="mb-10">
+                        <h1 className="text-4xl md:text-5xl font-black text-white mb-6 slide-in-left">
+                            Research{' '}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 gradient-text">
+                                Publications
+                            </span>
+                        </h1>
+                        <div className="w-32 h-2 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-full mb-6 slide-in-left" style={{ animationDelay: '0.1s' }}></div>
+                        <p className="text-xl text-slate-400 max-w-3xl slide-in-left" style={{ animationDelay: '0.2s' }}>
+                            Peer-reviewed publications and research contributions to the scientific community
+                        </p>
+                    </div>
+
+                    <div className="space-y-6">
+                        {publications.map((pub, idx) => (
+                            <div
+                                key={idx}
+                                className={`glass-strong rounded-3xl p-6 slide-in-right hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 border-2 border-slate-700 hover:border-teal-500/50 bg-gradient-to-br ${pub.bgGradient}`}
+                                style={{ animationDelay: `${idx * 0.2}s` }}
+                            >
+                                {/* Enhanced Gradient Header */}
+                                <div className={`h-2 bg-gradient-to-r ${pub.gradient} rounded-full mb-8 shadow-lg`}></div>
+
+                                {/* Title */}
+                                <h2 className="text-3xl font-black text-white mb-6 leading-tight hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-teal-400 hover:to-cyan-400 transition-all cursor-default">
+                                    {pub.title}
+                                </h2>
+
+                                {/* Metadata */}
+                                <div className="flex flex-wrap gap-6 mb-6">
+                                    <div className="flex items-center gap-3">
+                                        <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${pub.gradient} flex items-center justify-center`}>
+                                            <User className="w-5 h-5 text-white" />
+                                        </div>
+                                        <span className="text-slate-300 font-semibold">{pub.authors}</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${pub.gradient} flex items-center justify-center`}>
+                                            <BookOpen className="w-5 h-5 text-white" />
+                                        </div>
+                                        <span className="text-slate-300 font-semibold">{pub.journal}</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${pub.gradient} flex items-center justify-center`}>
+                                            <Award className="w-5 h-5 text-white" />
+                                        </div>
+                                        <span className="text-slate-300 font-semibold">{pub.year}</span>
+                                    </div>
+                                </div>
+
+                                {/* DOI */}
+                                <div className="mb-8">
+                                    <span className="px-5 py-2.5 glass-strong text-slate-300 rounded-xl font-mono text-sm border border-slate-700">
+                                        DOI: {pub.doi}
+                                    </span>
+                                </div>
+
+                                {/* Abstract */}
+                                <div className="mb-8">
+                                    <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                                        <div className="w-1 h-6 bg-gradient-to-b from-teal-500 to-cyan-500 rounded-full"></div>
+                                        Abstract
+                                    </h3>
+                                    <p className="text-slate-300 leading-relaxed text-lg">
+                                        {pub.abstract}
+                                    </p>
+                                </div>
+
+                                {/* Keywords */}
+                                <div className="mb-8">
+                                    <h3 className="text-sm font-bold text-slate-400 mb-4 uppercase tracking-wider">
+                                        Keywords
+                                    </h3>
+                                    <div className="flex flex-wrap gap-3">
+                                        {pub.keywords.map((keyword, i) => (
+                                            <span
+                                                key={i}
+                                                className={`px-5 py-2.5 glass text-transparent bg-clip-text bg-gradient-to-r ${pub.gradient} rounded-xl font-bold border border-teal-500/30`}
+                                            >
+                                                {keyword}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Link */}
+                                <a
+                                    href={pub.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r ${pub.gradient} text-white font-bold rounded-2xl hover:shadow-2xl hover:scale-110 transition-all`}
+                                >
+                                    <ExternalLink className="w-5 h-5" />
+                                    <span className="text-base">View Publication</span>
+                                </a>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Research Interests - Premium */}
+                    <div className="mt-16 glass-strong rounded-3xl p-6 scale-in border-2 border-slate-700 hover:border-emerald-500/50 transition-all bg-gradient-to-br from-emerald-500/10 to-cyan-500/10">
+                        <div className="flex items-center gap-5 mb-8">
+                            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-400 to-cyan-500 flex items-center justify-center shadow-2xl">
+                                <Target className="w-8 h-8 text-white" />
+                            </div>
+                            <h2 className="text-3xl font-black text-white">Research Interests</h2>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {[
+                                {
+                                    area: 'Computer Vision & Object Detection',
+                                    description: 'Advanced techniques for real-time object detection, tracking, and scene understanding',
+                                    gradient: 'from-emerald-400 to-teal-500'
+                                },
+                                {
+                                    area: 'Autonomous Systems',
+                                    description: 'Navigation, path planning, and decision-making for autonomous vehicles and robots',
+                                    gradient: 'from-teal-500 to-cyan-500'
+                                },
+                                {
+                                    area: 'Precision Agriculture',
+                                    description: 'AI-powered solutions for crop monitoring, yield prediction, and resource optimization',
+                                    gradient: 'from-emerald-500 to-teal-500'
+                                },
+                                {
+                                    area: 'Generative AI',
+                                    description: 'Diffusion models, GANs, and neural rendering for creative and practical applications',
+                                    gradient: 'from-emerald-500 to-cyan-500'
+                                }
+                            ].map((interest, idx) => (
+                                <div
+                                    key={idx}
+                                    className={`p-8 glass-strong rounded-2xl border-2 border-slate-700 hover:border-emerald-500/50 transition-all hover:scale-105 scale-in group`}
+                                    style={{ animationDelay: `${idx * 0.1}s` }}
+                                >
+                                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${interest.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                                        <Star className="w-6 h-6 text-white" />
+                                    </div>
+                                    <h3 className={`text-xl font-black mb-3 text-transparent bg-clip-text bg-gradient-to-r ${interest.gradient}`}>
+                                        {interest.area}
+                                    </h3>
+                                    <p className="text-slate-300 leading-relaxed">{interest.description}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Enhanced CTA */}
+                    <div className="mt-10 glass-strong rounded-3xl p-8 text-center scale-in border-2 border-slate-700 hover:border-teal-500/50 transition-all bg-gradient-to-br from-teal-500/10 to-cyan-500/10">
+                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center mx-auto mb-6">
+                            <Rocket className="w-8 h-8 text-white" />
+                        </div>
+                        <h3 className="text-2xl font-black text-white mb-4">Ongoing Research</h3>
+                        <p className="text-slate-300 mb-8 text-lg max-w-3xl mx-auto leading-relaxed">
+                            Currently working on several exciting projects in generative AI, multi-agent systems, and autonomous robotics.
+                            Stay tuned for upcoming publications and datasets!
+                        </p>
+                        <button
+                            onClick={() => navigateTo('contact')}
+                            className="px-6 py-3 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white font-bold rounded-2xl hover:shadow-2xl hover:scale-110 transition-all"
+                        >
+                            <div className="flex items-center gap-3">
+                                <Heart className="w-5 h-5" />
+                                <span className="text-base">Collaborate with Me</span>
+                                <ChevronRight className="w-5 h-5" />
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        // CONTACT PAGE - Premium Enhanced
+        const ContactPage = () => {
+            const [formData, setFormData] = useState({
+                name: '',
+                email: '',
+                subject: '',
+                message: ''
+            });
+            const [formStatus, setFormStatus] = useState('');
+
+            const handleChange = (e) => {
+                setFormData({
+                    ...formData,
+                    [e.target.name]: e.target.value
+                });
+            };
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+
+                // Validate form
+                if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+                    setFormStatus('error');
+                    alert('Please fill in all fields!');
+                    return;
+                }
+
+                // Create mailto link with form data
+                const mailtoLink = `mailto:guhan.s@zohomail.in?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+                    `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+                )}`;
+
+                // Open email client
+                window.location.href = mailtoLink;
+
+                // Show success message
+                setFormStatus('success');
+                alert('Opening your email client...\n\nIf it doesn\'t open automatically, please email me directly at guhan.s@zohomail.in');
+
+                // Reset form
+                setFormData({
+                    name: '',
+                    email: '',
+                    subject: '',
+                    message: ''
+                });
+
+                // Clear status after 3 seconds
+                setTimeout(() => setFormStatus(''), 3000);
+            };
+
+            const contactInfo = [
+                {
+                    icon: Mail,
+                    label: 'Email',
+                    value: 'guhan.s@zohomail.in',
+                    link: 'mailto:guhan.s@zohomail.in',
+                    gradient: 'from-emerald-500 to-cyan-500',
+                    bgGradient: 'from-emerald-500/10 to-cyan-500/10'
+                },
+                {
+                    icon: Phone,
+                    label: 'Phone',
+                    value: '+91 9487427788',
+                    link: 'tel:+919487427788',
+                    gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
+                    bgGradient: 'from-emerald-500/10 to-cyan-500/10'
+                },
+                {
+                    icon: Github,
+                    label: 'GitHub',
+                    value: '@sriguhan7764',
+                    link: 'https://github.com/sriguhan7764',
+                    gradient: 'from-gray-500 via-slate-600 to-zinc-500',
+                    bgGradient: 'from-gray-500/10 to-zinc-500/10'
+                },
+                {
+                    icon: Linkedin,
+                    label: 'LinkedIn',
+                    value: 'Guhan Srinivasamoorthy',
+                    link: 'https://www.linkedin.com/in/guhan-srinivasamoorthy/',
+                    gradient: 'from-teal-500 via-cyan-600 to-cyan-500',
+                    bgGradient: 'from-teal-500/10 to-cyan-500/10'
+                }
+            ];
+
+            return (
+                <div className="max-w-6xl mx-auto pb-20">
+                    {/* Enhanced Header */}
+                    <div className="mb-10">
+                        <h1 className="text-4xl md:text-5xl font-black text-white mb-6 slide-in-left">
+                            Get In{' '}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 gradient-text">
+                                Touch
+                            </span>
+                        </h1>
+                        <div className="w-32 h-2 bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 rounded-full mb-6 slide-in-left" style={{ animationDelay: '0.1s' }}></div>
+                        <p className="text-xl text-slate-400 max-w-3xl slide-in-left" style={{ animationDelay: '0.2s' }}>
+                            Let's connect and discuss opportunities, collaborations, or just have a chat about technology!
+                        </p>
+                    </div>
+
+                    {/* Contact Cards - Premium Design */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                        {contactInfo.map((contact, idx) => (
+                            <a
+                                key={idx}
+                                href={contact.link}
+                                target={contact.link.startsWith('http') ? '_blank' : undefined}
+                                rel={contact.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                className={`glass-strong rounded-3xl p-8 hover:shadow-2xl hover:scale-110 transition-all duration-500 group bounce-in border-2 border-slate-700 hover:border-pink-500/50 bg-gradient-to-br ${contact.bgGradient}`}
+                                style={{ animationDelay: `${idx * 0.1}s` }}
+                            >
+                                <div className="flex items-center gap-6">
+                                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${contact.gradient} flex items-center justify-center group-hover:scale-125 group-hover:rotate-12 transition-all shadow-2xl`}>
+                                        <contact.icon className="w-8 h-8 text-white" />
+                                    </div>
+                                    <div className="flex-1">
+                                        <p className="text-sm text-slate-400 mb-2 font-semibold uppercase tracking-wider">
+                                            {contact.label}
+                                        </p>
+                                        <p className={`text-xl font-black text-transparent bg-clip-text bg-gradient-to-r ${contact.gradient}`}>
+                                            {contact.value}
+                                        </p>
+                                    </div>
+                                    <ExternalLink className="w-6 h-6 text-slate-400 group-hover:text-emerald-400 transition-colors" />
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+
+                    {/* Contact Form - Premium Design */}
+                    <div className="glass-strong rounded-3xl p-6 slide-in-right border-2 border-slate-700 hover:border-emerald-500/50 transition-all bg-gradient-to-br from-emerald-500/10 to-cyan-500/10">
+                        <div className="flex items-center gap-5 mb-8">
+                            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-400 to-cyan-500 flex items-center justify-center shadow-2xl">
+                                <Mail className="w-8 h-8 text-white" />
+                            </div>
+                            <h2 className="text-3xl font-black text-white">Send a Message</h2>
+                        </div>
+                        <form className="space-y-6" onSubmit={handleSubmit}>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label className="block text-white font-bold mb-3 text-sm uppercase tracking-wider">
+                                        Name *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full px-5 py-4 glass-strong border-2 border-slate-700 rounded-2xl text-white focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/20 transition-all font-semibold"
+                                        placeholder="Your name"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-white font-bold mb-3 text-sm uppercase tracking-wider">
+                                        Email *
+                                    </label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full px-5 py-4 glass-strong border-2 border-slate-700 rounded-2xl text-white focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/20 transition-all font-semibold"
+                                        placeholder="your.email@example.com"
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label className="block text-white font-bold mb-3 text-sm uppercase tracking-wider">
+                                    Subject *
+                                </label>
+                                <input
+                                    type="text"
+                                    name="subject"
+                                    value={formData.subject}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-5 py-4 glass-strong border-2 border-slate-700 rounded-2xl text-white focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/20 transition-all font-semibold"
+                                    placeholder="What's this about?"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-white font-bold mb-3 text-sm uppercase tracking-wider">
+                                    Message *
+                                </label>
+                                <textarea
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    required
+                                    rows="6"
+                                    className="w-full px-5 py-4 glass-strong border-2 border-slate-700 rounded-2xl text-white focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/20 transition-all resize-none font-semibold"
+                                    placeholder="Tell me about your project or idea..."
+                                ></textarea>
+                            </div>
+                            <button
+                                type="submit"
+                                className="w-full md:w-auto px-6 py-3 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white font-bold rounded-2xl hover:shadow-2xl hover:scale-110 transition-all flex items-center justify-center gap-3"
+                            >
+                                <Mail className="w-5 h-5" />
+                                <span className="text-base">Send Message</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    {/* Availability Notice - Premium */}
+                    <div className="mt-10 glass-strong rounded-3xl p-8 text-center scale-in border-2 border-slate-700 hover:border-green-500/50 transition-all bg-gradient-to-br from-green-500/10 to-emerald-500/10">
+                        <div className="flex items-center justify-center gap-4 mb-6">
+                            <span className="relative flex h-4 w-4">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-4 w-4 bg-gradient-to-r from-green-500 to-emerald-500"></span>
+                            </span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 font-black text-2xl">
+                                Available for Opportunities
+                            </span>
+                        </div>
+                        <p className="text-slate-300 text-lg leading-relaxed max-w-2xl mx-auto">
+                            I'm currently open to research positions, AI/ML engineering roles, and exciting collaborations.
+                            Feel free to reach out!
+                        </p>
+                    </div>
+
+                    {/* Social Links - Premium */}
+                    <div className="mt-10 flex justify-center gap-5">
+                        {[
+                            { href: 'https://github.com/sriguhan7764', icon: Github, gradient: 'from-emerald-500 to-teal-500' },
+                            { href: 'https://www.linkedin.com/in/guhan-srinivasamoorthy/', icon: Linkedin, gradient: 'from-teal-500 to-cyan-500' },
+                            { href: 'mailto:guhan.s@zohomail.in', icon: Mail, gradient: 'from-emerald-400 to-cyan-500' }
+                        ].map((social, idx) => (
+                            <a
+                                key={idx}
+                                href={social.href}
+                                target={social.href.startsWith('http') ? '_blank' : undefined}
+                                rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                className="group w-12 h-12 glass-strong rounded-2xl flex items-center justify-center hover:scale-125 transition-all border-2 border-slate-700 hover:border-purple-500/50"
+                            >
+                                <social.icon className={`w-6 h-6 text-slate-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:${social.gradient} transition-all`} />
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(<Portfolio />);
+    </script>
+</body>
+</html>
